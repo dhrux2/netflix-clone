@@ -1,0 +1,34 @@
+{
+  "name": "netflix-clone",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "dev": "concurrently -k \"node --watch server/index.js\" \"vite --host 127.0.0.1\"",
+    "build": "tsc -b && vite build",
+    "build:showcase": "tsc -b && vite build --mode showcase",
+    "start": "node server/index.js",
+    "test": "node --test tests/*.test.js",
+    "test:e2e": "playwright test"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "lucide-react": "^0.468.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.1.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.51.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.2",
+    "prettier": "^3.9.10",
+    "typescript": "~5.7.3",
+    "vite": "^6.1.0"
+  }
+}

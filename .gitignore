@@ -1,0 +1,21 @@
+node_modules/
+dist/
+/data/
+.env
+.env.*
+!.env.example
+!.env.showcase
+.vercel/
+test-results/
+playwright-report/
+*.log
+*.tsbuildinfo
+.DS_Store
+
+# Local design and release working notes
+/replica/
+/design-qa.md
+/docs/pre-push-checklist.md
+
+.vercel
+.env*

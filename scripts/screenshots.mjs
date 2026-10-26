@@ -1,0 +1,28 @@
+import { chromium } from '@playwright/test';
+import { mkdir } from 'node:fs/promises';
+
+await mkdir('docs/screenshots', { recursive: true });
+const browser = await chromium.launch();
+const page = await browser.newPage({ viewport: { width: 1440, height: 1000 }, deviceScaleFactor: 1 });
+const errors = [];
+page.on('pageerror', error => errors.push(error.message));
+await page.goto('http://127.0.0.1:3001', { waitUntil: 'domcontentloaded' });
+await page.locator('.hero-backdrop.visible').evaluate(image => image.decode().catch(() => {}));
+await page.evaluate(() => document.fonts.ready);
+await page.locator('img').evaluateAll(images => Promise.all(images.map(image => { image.loading = 'eager'; return image.decode().catch(() => {}); })));
+await page.screenshot({ path: 'docs/screenshots/discover-desktop.png', fullPage: true });
+await page.getByRole('link', { name: 'Details for Midnight City' }).first().click();
+await page.getByRole('dialog').waitFor();
+await page.locator('.preview-content').evaluate(element => Promise.all(element.getAnimations().map(animation => animation.finished)));
+await page.screenshot({ path: 'docs/screenshots/title-preview.png' });
+await page.keyboard.press('Escape');
+await page.setViewportSize({ width: 390, height: 844 });
+await page.goto('http://127.0.0.1:3001', { waitUntil: 'domcontentloaded' });
+await page.locator('.hero-backdrop.visible').evaluate(image => image.decode().catch(() => {}));
+await page.screenshot({ path: 'docs/screenshots/discover-mobile.png', fullPage: true });
+await page.getByRole('link', { name: 'Details for Midnight City' }).first().click();
+await page.getByRole('dialog').waitFor();
+await page.locator('.preview-content').evaluate(element => Promise.all(element.getAnimations().map(animation => animation.finished)));
+await page.screenshot({ path: 'docs/screenshots/title-preview-mobile.png' });
+console.log(JSON.stringify({ errors, screenshots: 4 }));
+await browser.close();
