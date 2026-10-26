@@ -6,7 +6,7 @@
 
 Find your next story. Pick up where you left off.
 
-[Run locally](#run-locally) · [Implementation](#implementation) · [Media credits](docs/stock-previews.md)
+[Open Afterglow](https://netflix-clone-pi-gilt.vercel.app) · [Run locally](#run-locally) · [Implementation](#implementation)
 
 ![React](https://img.shields.io/badge/React_19-161b22?style=flat-square&logo=react&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-161b22?style=flat-square&logo=typescript&logoColor=white)
